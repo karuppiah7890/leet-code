@@ -1,6 +1,6 @@
 package twosum
 
-func TwoSum(nums []int32, target int32) []int32 {
+func TwoSum(nums []int, target int) []int {
 	return TwoSumQuick(nums, target)
 }
 
@@ -18,27 +18,27 @@ func TwoSum(nums []int32, target int32) []int32 {
 // 3. What's the max number of numbers that can be present in the array? 2 <= nums.length <= 10^4
 
 // Quick. Time = O(N)
-func TwoSumQuick(nums []int32, target int32) []int32 {
+func TwoSumQuick(nums []int, target int) []int {
 	seenNumbers := map[int32]int32{}
 
 	for index, num := range nums {
-		num2 := target - num
+		num2 := int32(target - num)
 		num2Index, ok := seenNumbers[num2]
 		if ok {
-			return []int32{int32(index), num2Index}
+			return []int{index, int(num2Index)}
 		}
-		seenNumbers[num] = int32(index)
+		seenNumbers[int32(num)] = int32(index)
 	}
 	return nil
 }
 
 // Brute Force. Time = O(N^2)
-func TwoSumBruteForce(nums []int32, target int32) []int32 {
+func TwoSumBruteForce(nums []int, target int) []int {
 	for index, num := range nums {
 		for j := index + 1; j < len(nums); j++ {
 			otherNumber := nums[j]
 			if num+otherNumber == target {
-				return []int32{int32(index), int32(j)}
+				return []int{index, j}
 			}
 		}
 	}
