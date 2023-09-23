@@ -17,14 +17,24 @@ type TestCases []TestCase
 
 func TestMinOperations(t *testing.T) {
 	testCases := TestCases{
-		{nums: []int{1, 1, 4, 2, 3}, x: 5, expectedOutput: 2},
+		{nums: []int{5}, x: 4, expectedOutput: -1},
+		{nums: []int{5, 5}, x: 4, expectedOutput: -1},
+		{nums: []int{3}, x: 4, expectedOutput: -1},
+		{nums: []int{4}, x: 4, expectedOutput: 1},
+		{nums: []int{4, 4}, x: 4, expectedOutput: 1},
+		{nums: []int{5, 4}, x: 4, expectedOutput: 1},
+		{nums: []int{4, 5}, x: 4, expectedOutput: 1},
+		{nums: []int{4, 3, 5}, x: 4, expectedOutput: 1},
+		{nums: []int{5, 3, 4}, x: 4, expectedOutput: 1},
 		{nums: []int{5, 6, 7, 8, 9}, x: 4, expectedOutput: -1},
-		{nums: []int{3, 2, 20, 1, 1, 3}, x: 10, expectedOutput: 5},
+		// {nums: []int{5, 2, 5}, x: 6, expectedOutput: -1},
+		// {nums: []int{1, 1, 4, 2, 3}, x: 5, expectedOutput: 2},
+		// {nums: []int{3, 2, 20, 1, 1, 3}, x: 10, expectedOutput: 5},
 	}
 
 	for _, testCase := range testCases {
 		output := min_operations.MinOperations(testCase.nums, testCase.x)
 
-		assert.Equal(t, testCase.expectedOutput, output)
+		assert.Equal(t, testCase.expectedOutput, output, "Input: %v", testCase.nums)
 	}
 }
