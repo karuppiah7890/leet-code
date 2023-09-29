@@ -19,8 +19,26 @@ func MinOperations(nums []int, x int) int {
 		}
 	}
 
-	first := nums[0]
-	last := nums[len(nums)-1]
+	return minOperations(nums, x, 0, len(nums)-1)
+}
+
+// the start index and end index are both inclusive indices
+func minOperations(nums []int, x int, startIndex int, endIndex int) int {
+	// sub array of size 1
+	if startIndex == endIndex {
+		if nums[startIndex] == x {
+			// 1 operation to subtract the single number from x
+			return 1
+		} else {
+			// here (nums[startIndex] > x) or (nums[startIndex] < x).
+			// hence no operations can be done to
+			// make x as 0 by subtracting num[startIndex] from it
+			return -1
+		}
+	}
+
+	first := nums[startIndex]
+	last := nums[endIndex]
 
 	if first == x || last == x {
 		// the first or last number could be the same as x.
@@ -35,10 +53,10 @@ func MinOperations(nums []int, x int) int {
 	// the first and/ the last number is less than x
 
 	// remove first number and follow that path and try to make x as 0
-	numberOfOperationsUsingFirstNumber := MinOperations(nums[1:], x-first)
+	numberOfOperationsUsingFirstNumber := minOperations(nums, x-first, startIndex+1, endIndex)
 
 	// remove last number and follow that path and try to make x as 0
-	numberOfOperationsUsingLastNumber := MinOperations(nums[:len(nums)-1], x-last)
+	numberOfOperationsUsingLastNumber := minOperations(nums, x-last, startIndex, endIndex-1)
 
 	// if both first and last number removal path does not
 	// lead x to become 0 on subtracting the numbers, then
