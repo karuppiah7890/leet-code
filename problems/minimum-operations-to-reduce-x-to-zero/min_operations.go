@@ -18,6 +18,7 @@ import "fmt"
 
 type minOperationsFinder struct {
 	resultsStore map[string]int
+	nums []int
 }
 
 func MinOperations(nums []int, x int) int {
@@ -41,9 +42,10 @@ func MinOperations(nums []int, x int) int {
 
 	m := minOperationsFinder{
 		resultsStore: make(map[string]int),
+		nums: nums,
 	}
 
-	result := m.findMinOperations(nums, x, 0, len(nums)-1)
+	result := m.findMinOperations(x, 0, len(nums)-1)
 
 	// fmt.Printf("%v\n", m.resultsStore)
 
@@ -75,10 +77,10 @@ func (m *minOperationsFinder) setResultInStore(startIndex int, endIndex int, res
 }
 
 // the start index and end index are both inclusive indices
-func (m *minOperationsFinder) findMinOperations(nums []int, x int, startIndex int, endIndex int) int {
+func (m *minOperationsFinder) findMinOperations(x int, startIndex int, endIndex int) int {
 	// sub array of size 1
 	if startIndex == endIndex {
-		if nums[startIndex] == x {
+		if m.nums[startIndex] == x {
 			// 1 operation to subtract the single number from x
 			return 1
 		} else {
@@ -89,8 +91,8 @@ func (m *minOperationsFinder) findMinOperations(nums []int, x int, startIndex in
 		}
 	}
 
-	first := nums[startIndex]
-	last := nums[endIndex]
+	first := m.nums[startIndex]
+	last := m.nums[endIndex]
 
 	if first == x || last == x {
 		// the first or last number could be the same as x.
@@ -111,7 +113,7 @@ func (m *minOperationsFinder) findMinOperations(nums []int, x int, startIndex in
 		if result, ok := m.getResultFromStore(startIndex+1, endIndex); ok {
 			numberOfOperationsUsingFirstNumber = result
 		} else {
-			numberOfOperationsUsingFirstNumber = m.findMinOperations(nums, x-first, startIndex+1, endIndex)
+			numberOfOperationsUsingFirstNumber = m.findMinOperations(x-first, startIndex+1, endIndex)
 			m.setResultInStore(startIndex+1, endIndex, numberOfOperationsUsingFirstNumber)
 		}
 	}
@@ -121,7 +123,7 @@ func (m *minOperationsFinder) findMinOperations(nums []int, x int, startIndex in
 		if result, ok := m.getResultFromStore(startIndex, endIndex-1); ok {
 			numberOfOperationsUsingLastNumber = result
 		} else {
-			numberOfOperationsUsingLastNumber = m.findMinOperations(nums, x-last, startIndex, endIndex-1)
+			numberOfOperationsUsingLastNumber = m.findMinOperations(x-last, startIndex, endIndex-1)
 			m.setResultInStore(startIndex, endIndex-1, numberOfOperationsUsingLastNumber)
 		}
 	}
