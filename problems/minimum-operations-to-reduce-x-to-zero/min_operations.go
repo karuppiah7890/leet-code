@@ -106,21 +106,24 @@ func (m *minOperationsFinder) findMinOperations(nums []int, x int, startIndex in
 	numberOfOperationsUsingLastNumber := -1
 	// the first and/ the last number is less than x
 
-	// remove first number and follow that path and try to make x as 0
-	if result, ok := m.getResultFromStore(startIndex+1, endIndex); ok {
-		numberOfOperationsUsingFirstNumber = result
-	} else {
-		numberOfOperationsUsingFirstNumber = m.findMinOperations(nums, x-first, startIndex+1, endIndex)
-		m.setResultInStore(startIndex+1, endIndex, numberOfOperationsUsingFirstNumber)
+	if first < x {
+		// remove first number and follow that path and try to make x as 0
+		if result, ok := m.getResultFromStore(startIndex+1, endIndex); ok {
+			numberOfOperationsUsingFirstNumber = result
+		} else {
+			numberOfOperationsUsingFirstNumber = m.findMinOperations(nums, x-first, startIndex+1, endIndex)
+			m.setResultInStore(startIndex+1, endIndex, numberOfOperationsUsingFirstNumber)
+		}
 	}
 
-	// remove last number and follow that path and try to make x as 0
-
-	if result, ok := m.getResultFromStore(startIndex, endIndex-1); ok {
-		numberOfOperationsUsingLastNumber = result
-	} else {
-		numberOfOperationsUsingLastNumber = m.findMinOperations(nums, x-last, startIndex, endIndex-1)
-		m.setResultInStore(startIndex, endIndex-1, numberOfOperationsUsingLastNumber)
+	if last < x {
+		// remove last number and follow that path and try to make x as 0
+		if result, ok := m.getResultFromStore(startIndex, endIndex-1); ok {
+			numberOfOperationsUsingLastNumber = result
+		} else {
+			numberOfOperationsUsingLastNumber = m.findMinOperations(nums, x-last, startIndex, endIndex-1)
+			m.setResultInStore(startIndex, endIndex-1, numberOfOperationsUsingLastNumber)
+		}
 	}
 
 	// if both first and last number removal path does not
