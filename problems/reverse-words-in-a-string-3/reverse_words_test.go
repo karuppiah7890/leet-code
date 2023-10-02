@@ -32,3 +32,9 @@ func TestReverseWords(t *testing.T) {
 		assert.Equal(t, testCase.expectedOutput, output, "Input: %v", testCase.input)
 	}
 }
+
+func BenchmarkReverseWords(b *testing.B) {
+	for i := 0; i < b.N ; i++ {
+		reversewords.ReverseWords("It's Awesome Stuff Over Here")
+	}
+}
