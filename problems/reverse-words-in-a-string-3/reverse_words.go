@@ -1,31 +1,39 @@
 package reversewords
 
-import (
-	"fmt"
-	"strings"
-)
-
 func ReverseWords(s string) string {
-	reversedWords := []string{}
-	words := strings.Split(s, " ")
+	stringBytes := []byte(s)
 
-	for _, word := range words {
-		reversedWord := reverse(word)
-		reversedWords = append(reversedWords, reversedWord)
-	}
+	wordStart := 0
+	wordEnd := 0
+	for index := 1; index < len(stringBytes); index++ {
 
-	return strings.Join(reversedWords, " ")
-}
+		if stringBytes[index] == ' ' {
+			wordEnd = index - 1
+			reverse(stringBytes, wordStart, wordEnd)
+			wordStart = index + 1
+			wordEnd = wordStart
+		}
 
-func reverse(s string) string {
-	reversedString := strings.Builder{}
-	for index := len(s) - 1; index >= 0; index-- {
-		c := s[index]
-		err := reversedString.WriteByte(c)
-		if err != nil {
-			panic(fmt.Sprintf("An error occurred while writing byte %v (string: %v) to result string: %v", c, string(c), err))
+		if index == len(stringBytes)-1 {
+			wordEnd = index
+			reverse(stringBytes, wordStart, wordEnd)
 		}
 	}
 
-	return reversedString.String()
+	return string(stringBytes)
+}
+
+// reverse the bytes in a byte array between the fromIndex and toIndex, inclusive
+func reverse(s []byte, startIndex int, endIndex int) {
+	length := endIndex - startIndex + 1
+	midIndex := startIndex + ((length - 1) / 2)
+	leftIndex := startIndex
+	var value byte
+
+	for rightIndex := endIndex; rightIndex > midIndex; rightIndex-- {
+		value = s[leftIndex]
+		s[leftIndex] = s[rightIndex]
+		s[rightIndex] = value
+		leftIndex++
+	}
 }
