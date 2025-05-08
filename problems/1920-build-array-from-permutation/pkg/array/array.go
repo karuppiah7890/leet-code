@@ -1,17 +1,19 @@
 package array
 
 func buildArray(nums []int) []int {
-	for index := 0; index < len(nums); index++ {
+	for index := 0; index < len(nums); {
 		if nums[index] < 0 {
 			// ^^^^ WE MOVE ON AS THIS IS MARKED AS TRAVELLED TO OR
 			// VISITED, AND UPDATED OR GOTTEN NEW VALUE
+			nums[index] = -nums[index] - 1
+			index++
 			continue
 		}
 
 		if index == nums[index] {
-			nums[index] = -nums[index] - 1
 			// ^^^^ TO MARK THIS AS TRAVELLED TO OR VISITED, AND UPDATED
 			// OR GOTTEN NEW VALUE
+			index++
 			continue
 		}
 
@@ -50,10 +52,6 @@ func buildArray(nums []int) []int {
 				break // break out of loop
 			}
 		}
-	}
-
-	for index, value := range nums {
-		nums[index] = -value - 1
 	}
 
 	return nums

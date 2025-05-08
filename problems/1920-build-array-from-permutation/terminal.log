@@ -250,3 +250,68 @@ BenchmarkBuildArray-8   	20550314	        57.53 ns/op	       0 B/op	       0 all
 PASS
 ok  	github.com/karuppiah7890/leet-code/problems/1920-build-array-from-permutation/pkg/arra1.816s
  1920-build-array-from-permutation  main ✘ ⬆  $ 
+ 1920-build-array-from-permutation  main ✔ ⬆  $ go test -v ./...
+=== RUN   TestBuildArray
+=== RUN   TestBuildArray/TestBuildArray-0
+=== RUN   TestBuildArray/TestBuildArray-1
+=== RUN   TestBuildArray/TestBuildArray-2
+    array_test.go:38: error in test case index: 2. Input (Before Processing): [0 2 1 5 3 4]. Output: [0 -2 2 -5 5 3]. Expected Output: [0 1 2 4 5 3]
+=== RUN   TestBuildArray/TestBuildArray-3
+    array_test.go:38: error in test case index: 3. Input (Before Processing): [0 11 9 4 7 10 5 8 6 3 2 1]. Output: [0 -2 -4 7 8 2 10 6 5 4 9 11]. Expected Output: [0 1 3 7 8 2 10 6 5 4 9 11]
+=== RUN   TestBuildArray/TestBuildArray-4
+    array_test.go:38: error in test case index: 4. Input (Before Processing): [0 11 9 4 7 10 5 8 6 3 1 2]. Output: [0 -3 3 7 8 1 10 6 5 4 11 9]. Expected Output: [0 2 3 7 8 1 10 6 5 4 11 9]
+=== RUN   TestBuildArray/TestBuildArray-5
+    array_test.go:38: error in test case index: 5. Input (Before Processing): [0 11 9 4 7 10 5 8 6 3 2 17 12 13 14 15 1 16]. Output: [0 -18 -4 7 8 2 10 6 5 4 9 16 12 13 14 15 11 1]. Expected Output: [0 17 3 7 8 2 10 6 5 4 9 16 12 13 14 15 11 1]
+=== RUN   TestBuildArray/TestBuildArray-6
+    array_test.go:38: error in test case index: 6. Input (Before Processing): [10 0 9 1 7 11 5 8 6 3 4 2]. Output: [-5 10 3 0 8 2 11 6 5 1 7 9]. Expected Output: [4 10 3 0 8 2 11 6 5 1 7 9]
+=== RUN   TestBuildArray/TestBuildArray-7
+    array_test.go:38: error in test case index: 7. Input (Before Processing): [6 11 9 4 7 10 5 8 0 3 2 17 12 13 14 15 1 16]. Output: [-6 -18 3 7 8 2 10 0 6 4 9 16 12 13 14 15 11 1]. Expected Output: [5 17 3 7 8 2 10 0 6 4 9 16 12 13 14 15 11 1]
+=== RUN   TestBuildArray/TestBuildArray-8
+    array_test.go:38: error in test case index: 8. Input (Before Processing): [6 11 9 4 7 10 0 8 5 3 2 17 12 13 14 15 1 16]. Output: [-1 -18 -4 7 8 2 6 5 10 4 9 16 12 13 14 15 11 1]. Expected Output: [0 17 3 7 8 2 6 5 10 4 9 16 12 13 14 15 11 1]
+--- FAIL: TestBuildArray (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-0 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-1 (0.00s)
+    --- FAIL: TestBuildArray/TestBuildArray-2 (0.00s)
+    --- FAIL: TestBuildArray/TestBuildArray-3 (0.00s)
+    --- FAIL: TestBuildArray/TestBuildArray-4 (0.00s)
+    --- FAIL: TestBuildArray/TestBuildArray-5 (0.00s)
+    --- FAIL: TestBuildArray/TestBuildArray-6 (0.00s)
+    --- FAIL: TestBuildArray/TestBuildArray-7 (0.00s)
+    --- FAIL: TestBuildArray/TestBuildArray-8 (0.00s)
+FAIL
+FAIL	github.com/karuppiah7890/leet-code/problems/1920-build-array-from-permutation/pkg/arra0.541s
+FAIL
+ ✘  1920-build-array-from-permutation  main ✘ ⬆  $ 
+ 1920-build-array-from-permutation  main ✘ ⬆  $ go test -v ./...
+=== RUN   TestBuildArray
+=== RUN   TestBuildArray/TestBuildArray-0
+=== RUN   TestBuildArray/TestBuildArray-1
+=== RUN   TestBuildArray/TestBuildArray-2
+=== RUN   TestBuildArray/TestBuildArray-3
+=== RUN   TestBuildArray/TestBuildArray-4
+=== RUN   TestBuildArray/TestBuildArray-5
+=== RUN   TestBuildArray/TestBuildArray-6
+=== RUN   TestBuildArray/TestBuildArray-7
+=== RUN   TestBuildArray/TestBuildArray-8
+--- PASS: TestBuildArray (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-0 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-1 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-2 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-3 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-4 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-5 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-6 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-7 (0.00s)
+    --- PASS: TestBuildArray/TestBuildArray-8 (0.00s)
+PASS
+ok  	github.com/karuppiah7890/leet-code/problems/1920-build-array-from-permutation/pkg/arra0.576s
+ 1920-build-array-from-permutation  main ✘ ⬆  $ 
+ 1920-build-array-from-permutation  main ✘ ⬆  $ go test -bench . -benchmem  ./...
+goos: darwin
+goarch: amd64
+pkg: github.com/karuppiah7890/leet-code/problems/1920-build-array-from-permutation/pkg/array
+cpu: Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz
+BenchmarkBuildArray-8   	23817644	        49.94 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/karuppiah7890/leet-code/problems/1920-build-array-from-permutation/pkg/arra1.783s
+ 1920-build-array-from-permutation  main ✘ ⬆  $ 
